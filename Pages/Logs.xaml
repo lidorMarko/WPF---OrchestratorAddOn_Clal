@@ -1,0 +1,238 @@
+﻿<Page x:Class="OrchestratorAddOn.Pages.Logs"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OrchestratorAddOn.Pages" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Logs">
+
+    <Page.Resources>
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Style/Logs.xaml"/>
+                <ResourceDictionary Source="/Style/Global.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="#F9F6EE" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Border Name="mainContent" 
+                    Grid.Row="0" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Background="#F9F6EE" 
+                    CornerRadius="50"
+                    Margin="5">
+                <Grid x:Name="mainContentGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Name="title"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Content="Transactions Logs"
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource GlobalTitle}">
+                    </Label>
+
+                    <StackPanel Name="SearchRow"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center">
+                        <Label Style="{StaticResource selectionLable}" >select transaction under</Label>
+                        <Button Name="pathSelection"
+                                    Content="root" 
+                                    Style="{StaticResource selectionButtons}"
+                                    Click="PathSelection_Click"/>
+                        <!--when clicked all the paths will be displayed in the ButtonsWrapPanel-->
+                        <Label Style="{StaticResource selectionLable}">with</Label>
+                        <Button x:Name="filterOption"
+                                    Content="Reference Starts With" 
+                                    Style="{StaticResource selectionButtons}"
+                                    Click="FilterOption_Click"/>
+                        <!--when clicked all the options will be displayed-->
+                        <TextBox x:Name="searchRowTextBox"
+                                     Text="Reference" 
+                                     PreviewMouseDown="TextBox_PreviewMouseDown"
+                                     LostFocus="SearchRowTextBox_LostFocus"
+                                     Style="{StaticResource selectionTextBox}" />
+                        <Button Content="Search" 
+                                    Style="{StaticResource searchButtons}"
+                                    Click="Search_Button_Click"/>
+                    </StackPanel>
+
+                    <!--The panel that will be displayed incase one of the buttons at the selection
+                    row is clicked-->
+                    <Grid x:Name="FilterButtonSelectionGrid"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      MaxHeight="400"
+                                      Grid.Row="0"
+                                      Grid.Column="1">
+                            <Border 
+                                BorderBrush="Black" 
+                                BorderThickness="1">
+                                <StackPanel x:Name="FilterButtonSelectionStackPanel"
+                                    Orientation="Vertical">
+                                    <Button x:Name="close_buttonsPanel"
+                                        Style="{StaticResource ButtonsPanelCloseButtons}"
+                                        Click="Close_buttonsPanel_Click">X</Button>
+                                    <WrapPanel x:Name="ButtonsWrapPanel"
+                                        HorizontalAlignment="Center"
+                                        MaxWidth="700">
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+                        </ScrollViewer>
+
+                    </Grid>
+
+  <DataGrid Name="resultTable" 
+        Grid.Row="4"
+        Grid.Column="0"
+        IsHitTestVisible ="True"
+        MouseDoubleClick="ResultTable_MouseDoubleClick">
+      <DataGrid.Style>
+          <Style BasedOn="{StaticResource GlobalTable}" 
+              TargetType="{x:Type DataGrid}" />
+      </DataGrid.Style>
+      <DataGrid.ColumnHeaderStyle>
+          <Style BasedOn="{StaticResource GlbalTableHeader}" 
+              TargetType="{x:Type DataGridColumnHeader}" />
+      </DataGrid.ColumnHeaderStyle>
+      <DataGrid.CellStyle>
+          <Style BasedOn="{StaticResource GlobalTableCell}" 
+              TargetType="{x:Type DataGridCell}" />
+      </DataGrid.CellStyle>
+      <DataGrid.RowStyle>
+          <Style BasedOn="{StaticResource GlobalTableRow}" 
+              TargetType="{x:Type DataGridRow}" />
+      </DataGrid.RowStyle>
+
+      <DataGrid.Columns>
+          <DataGridTextColumn Header="Reference" Binding="{Binding reference}" Width="*"></DataGridTextColumn>
+          <DataGridTextColumn Header="Process Name" Binding="{Binding processName}" Width="*"></DataGridTextColumn>
+          <DataGridTextColumn Header="Robot Name" Binding="{Binding robotName}" Width="*"></DataGridTextColumn>
+          <DataGridTextColumn Header="Started At" Binding="{Binding startTime}" Width="*"></DataGridTextColumn>
+          <DataGridTextColumn Header="Ended At" Binding="{Binding endTime}" Width="*"></DataGridTextColumn>
+      </DataGrid.Columns>
+  </DataGrid>
+                  
+
+                    <StackPanel x:Name="ChoosenTransactionlogsPanel"
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Visibility="Hidden">
+                        <Grid x:Name="ChoosenTransactionlogsHeader"
+                          Background="Black"
+                          Margin="70,0,70,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Name="ChoosenTransactionlogsSearchBar" 
+                                        Grid.Row="0" 
+                                        Grid.Column="0"
+                                        Orientation="Horizontal">
+                                <TextBox x:Name="SearchBarTextBox"
+                                        Text="log message"
+                                        Style="{StaticResource selectionTextBox}"
+                                        PreviewMouseDown="SearchBarTextBox_PreviewMouseDown"
+                                        LostFocus="SearchBarTextBox_LostFocus">
+                                </TextBox>
+                                <Button Name="SearchBarButton"
+                                        Click="SearchBarButton_Click"
+                                        Style="{StaticResource searchButtons}">Search</Button>
+                            </StackPanel>
+                            <Label Name="ChoosenTransactionReference"
+                               Grid.Row="0" 
+                               Grid.Column="1"
+                               HorizontalAlignment="Center"
+                               Foreground="#add8e6"
+                               FontSize="22">Transaction</Label>
+                            <Button 
+                            Name="btnClose"
+                            Content="X"
+                            Grid.Row="0" 
+                            Grid.Column="2"
+                            Margin="0,0,10,0"
+                            Style="{StaticResource TransactionTableCloseButtons}"
+                            Click="BtnCloseTransactionLogs_Click">
+                            </Button>
+                        </Grid>
+                        <DataGrid Name="ChoosenTransactionlogsTable" 
+                              IsHitTestVisible ="True"
+                              BorderThickness="0"
+                              MaxHeight="320">
+                            <DataGrid.Style>
+                                <Style BasedOn="{StaticResource GlobalTable}" 
+                                    TargetType="{x:Type DataGrid}" />
+                            </DataGrid.Style>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style BasedOn="{StaticResource GlbalTableHeader}" 
+                                    TargetType="{x:Type DataGridColumnHeader}" />
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.CellStyle>
+                                <Style BasedOn="{StaticResource GlobalTableCell}" 
+                                    TargetType="{x:Type DataGridCell}" />
+                            </DataGrid.CellStyle>
+                            <DataGrid.RowStyle>
+                                <Style BasedOn="{StaticResource GlobalTableRow}" 
+                                    TargetType="{x:Type DataGridRow}" />
+                            </DataGrid.RowStyle>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Level" Binding="{Binding level}" Width="auto"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Time" Binding="{Binding timespan}" Width="auto"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Message" Binding="{Binding message}" Width="*"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+
+</Page>

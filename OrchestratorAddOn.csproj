@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>images\orchestrator_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Font\13226-fontps.ttf" />
+    <None Remove="Font\13242-fontps.ttf" />
+    <None Remove="Font\13245-font.ttf" />
+    <None Remove="Font\13245-fontps.ttf" />
+    <None Remove="Font\5631-font.ttf" />
+    <None Remove="Font\DancingScript-Regular.ttf" />
+    <None Remove="Font\DancingScript-VariableFont_wght.ttf" />
+    <None Remove="Font\lidor.otf" />
+    <None Remove="Font\Rajdhani-Bold.ttf" />
+    <None Remove="images\leftArrow.png" />
+    <None Remove="images\logs.png" />
+    <None Remove="images\logs_icon.png" />
+    <None Remove="images\operations.webp" />
+    <None Remove="images\operations_icon.png" />
+    <None Remove="images\overview_icon.png" />
+    <None Remove="images\reports_icon.png" />
+    <None Remove="images\rightArrow.jpeg" />
+    <None Remove="images\rightArrow.png" />
+    <None Remove="images\robot.jpg" />
+    <None Remove="images\robot_icon.png" />
+    <None Remove="images\statistics.png" />
+    <None Remove="images\systemOperations_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\orchestrator_icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Font\13226-fontps.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.1" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+    <PackageReference Include="MySql.Data" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\logs_icon.png" />
+    <Resource Include="images\overview_icon.png" />
+    <Resource Include="images\reports_icon.png" />
+    <Resource Include="images\robot_icon.png" />
+    <Resource Include="images\systemOperations_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Style\Logs.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

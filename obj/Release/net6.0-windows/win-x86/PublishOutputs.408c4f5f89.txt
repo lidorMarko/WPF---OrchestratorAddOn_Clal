@@ -1,0 +1,2 @@
+C:\Users\לידור\source\repos\OrchestratorAddOn\OrchestratorAddOn\bin\Release\net6.0-windows\publish\win-x86\OrchestratorAddOn.pdb
+C:\Users\לידור\source\repos\OrchestratorAddOn\OrchestratorAddOn\bin\Release\net6.0-windows\publish\win-x86\OrchestratorAddOn.exe

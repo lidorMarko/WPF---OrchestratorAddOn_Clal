@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="selectionTextBox" 
+            TargetType="{x:Type TextBox}">
+        <Setter Property="Width" Value="150" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="LightGray" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Margin" Value="10,0,10,0" />
+    </Style>
+
+    <!--the table wont be displyed if contains no data-->
+    <Style TargetType="{x:Type DataGrid}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TransactionTableCloseButtons" TargetType="{x:Type Button}">
+        <Setter Property="Background" 
+                Value="Transparent"/>
+        <Setter Property="FontSize" 
+                Value="22"/>
+        <Setter Property="Foreground" 
+                Value="White"/>
+        <Setter Property="VerticalAlignment" 
+                Value="Center"/>
+       
+        <Setter Property="BorderThickness" 
+                Value="0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#add8e6" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+
+</ResourceDictionary>
+    

@@ -1,0 +1,182 @@
+﻿<Page x:Class="OrchestratorAddOn.Pages.RobotsMonitor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OrchestratorAddOn.Pages"
+      xmlns:ext="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RobotsMonitor">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Style/RobotsMonitorStyle.xaml"/>
+                <ResourceDictionary Source="/Style/Global.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Page.Resources>
+    <Grid Background="#F9F6EE" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Border Name="mainContent" 
+                    Grid.Row="0" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Background="#F9F6EE" 
+                    CornerRadius="50"
+                    Margin="5">
+                <Grid x:Name="mainContentGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+               
+                    <Label Name="title" 
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Content="Robots Monitor"
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource GlobalTitle}">
+                    </Label>
+
+                    <StackPanel Name="SearchRow"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center">
+                        <Label Height="40" 
+                            Style="{StaticResource selectionLable}" >get</Label>
+                        <Button x:Name="Choose_Robot"
+                                Content="robot" 
+                                Style="{StaticResource selectionButtons}"
+                                Click="Choose_Robot_Click"/>
+                        <Label Style="{StaticResource selectionLable}" >schedule on</Label>
+                        <!--<Button x:Name="Choose_Day"
+                                Content="day" 
+                                Style="{StaticResource selectionButtons}"
+                                Click="Choose_Day_Click"/>-->
+                        <DatePicker x:Name="datePicker"
+                                    Margin="0"
+                                    Padding="0"
+                                    BorderBrush="#F9F6EE"
+                                    Height="20"
+                                    Background="Transparent"
+                                    Visibility="Visible" />
+                        <Button Name="searchButton"
+                                Content="monitor" 
+                                Style="{StaticResource searchButtons}"
+                                Click="SearchButton_Click"/>
+                    </StackPanel>
+
+                    <!--The panel that will be displayed incase one of the buttons at the selection
+                    row is clicked-->
+                    <Grid x:Name="FilterButtonSelectionGrid"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      MaxHeight="400"
+                                      Grid.Row="0"
+                                      Grid.Column="1">
+                            <Border 
+                                BorderBrush="Black" 
+                                BorderThickness="1">
+                                <StackPanel x:Name="FilterButtonSelectionStackPanel"
+                                    Orientation="Vertical">
+                                    <Button x:Name="Close_buttonsPanel"
+                                        Style="{StaticResource ButtonsPanelCloseButtons}"
+                                        Click="Close_buttonsPanel_Click">X</Button>
+                                    <WrapPanel x:Name="ButtonsWrapPanel"
+                                        HorizontalAlignment="Center"
+                                        MaxWidth="700">
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+                        </ScrollViewer>
+
+                    </Grid>
+
+                    <DataGrid Name="resultTable" 
+                          Grid.Row="4"
+                          Grid.Column="0"
+                          IsHitTestVisible ="True">
+                        <DataGrid.Style>
+                            <Style BasedOn="{StaticResource GlobalTable}" 
+                                TargetType="{x:Type DataGrid}" />
+                        </DataGrid.Style>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style BasedOn="{StaticResource GlbalTableHeader}" 
+                                TargetType="{x:Type DataGridColumnHeader}" />
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <Style BasedOn="{StaticResource GlobalTableCell}" 
+                                TargetType="{x:Type DataGridCell}" />
+                        </DataGrid.CellStyle>
+                        <DataGrid.RowStyle>
+                            <Style BasedOn="{StaticResource GlobalTableRow}" 
+                                TargetType="{x:Type DataGridRow}" />
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Robot Name" Binding="{Binding robotName}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Started At" Binding="{Binding startTime}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Ended At" Binding="{Binding endTime}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Process Name" Binding="{Binding processName}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <fa:ImageAwesome Name="Loader"
+                         Grid.Row="4"
+                         Grid.Column="0"
+                         Icon="Spinner" Spin="True" SpinDuration="4" Width="80" Height="80" 
+                         Visibility="Hidden"
+                         Foreground="LightBlue">
+                    </fa:ImageAwesome>
+                    <!--<fa:ImageAwesome.Style>
+                            <Style TargetType="fa:ImageAwesome">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding isLoader}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding isLoader}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </fa:ImageAwesome.Style>-->                    
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

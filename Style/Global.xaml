@@ -1,0 +1,170 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="GlobalTitle" 
+           TargetType="{x:Type Label}" >
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="TextElement.FontFamily" Value="/Font/#ZeroGene" />
+    </Style>
+
+    <Style x:Key="GlobalSubTitle" 
+       TargetType="{x:Type Label}" >
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="TextElement.FontFamily" Value="/Font/#ZeroGene" />
+    </Style>
+
+    <Style x:Key="GlobalTable" 
+           TargetType="{x:Type DataGrid}" >
+        <Setter Property="Margin" Value="70,0,70,0" />
+        <Setter Property="RowHeaderWidth" Value="0" />
+        <Setter Property="GridLinesVisibility" Value="None" />
+        <!--<Setter Property="MaxHeight" Value="500" />-->
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="AlternatingRowBackground" Value="gray"/>
+        
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </Style.Triggers>
+        <!--disable the scroll bar-->
+        <!--in the mean while scrolling will be allowed
+        after the buttons will be added use - 
+        CanContentScroll="False"-->
+    </Style>
+
+    <Style x:Key="GlbalTableHeader" 
+           BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" 
+           TargetType="{x:Type DataGridColumnHeader}" >
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Foreground" Value="white" />
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="3 3 1 1"/>
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <Style x:Key="GlobalTableCell" 
+           BasedOn="{StaticResource {x:Type DataGridCell}}" 
+           TargetType="{x:Type DataGridCell}" >
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0" />
+        <!--increase the row height to auto when choosen--> 
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content.Text}"
+                               TextWrapping="Wrap" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#FFFCC9" />
+                <Setter Property="Foreground" Value="Black" />
+            </Trigger>
+            <!--change the cell color incase it represents a log row cell-->
+            <DataTrigger Binding="{Binding level}" Value="Trace">
+                <Setter Property="Foreground" Value="Green" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding level}" Value="Fatal">
+                <Setter Property="Foreground" Value="DarkRed" />
+            </DataTrigger>
+            <!--change the cell color incase it represents a robot rest time-->
+            <DataTrigger Binding="{Binding processName}" Value="">
+                <Setter Property="Foreground" Value="LightGray" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GlobalTableRow" 
+           BasedOn="{StaticResource {x:Type DataGridRow}}" 
+           TargetType="{x:Type DataGridRow}" >
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="35" />
+        <Style.Triggers>
+            <!-- Set the background color for odd rows -->
+            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                <Setter Property="Background" Value="#ECECEC" />
+            </Trigger>
+            <!-- Set the background color for even rows -->
+            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                <Setter Property="Background" Value="#F9F6EE" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Height" Value="auto" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="searchButtons" 
+            TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="auto" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Background" Value="LightBlue" />
+        <Setter Property="Foreground" Value="white" />
+        <Setter Property="FontSize" Value="17" />
+    </Style>
+
+    <Style x:Key="selectionButtons" 
+           TargetType="{x:Type Button}" >
+        <Setter Property="Width" Value="auto" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Foreground" Value="white" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Margin" Value="7" />
+    </Style>
+
+    <Style x:Key="selectionLable" 
+            TargetType="{x:Type Label}">
+        <Setter Property="Width" Value="auto" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="17" />
+    </Style>
+
+    <Style x:Key="ButtonsPanelCloseButtons" TargetType="Button">
+        <Setter Property="Background" 
+                Value="Transparent"/>
+        <Setter Property="FontSize" 
+                Value="22"/>
+        <Setter Property="Foreground" 
+                Value="black"/>
+        <Setter Property="VerticalAlignment" 
+                Value="Center"/>
+        <Setter Property="HorizontalAlignment" 
+                Value="Right"/>
+        <Setter Property="BorderThickness" 
+                Value="0"/>
+        <Setter Property="Margin" 
+                Value="0,0,10,0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="DarkGray" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

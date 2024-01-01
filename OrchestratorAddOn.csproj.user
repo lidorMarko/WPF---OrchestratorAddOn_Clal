@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>C:\Users\לידור\source\repos\OrchestratorAddOn\OrchestratorAddOn\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\Logs.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\MainPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Overview.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\RobotsMonitor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Update="Pages\Overview.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\Global.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\Logs.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\OverviewStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\RobotsMonitorStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\MainPageStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Logs.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\RobotsMonitor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\TitleBarStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

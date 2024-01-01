@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "dgSpecHash": "akBZHn77e/qbGpYcJ93NZYmfvFW3PssQSuPBlCWYEygmYSoEy9WBeuzVxXhVR7IyZWAdpTxzhoYHKUtjAm9W/A==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\לידור\\source\\repos\\OrchestratorAddOn\\OrchestratorAddOn\\OrchestratorAddOn.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "libraryId": "Microsoft.NETCore.App.Runtime.win-x86"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "libraryId": "Microsoft.WindowsDesktop.App.Runtime.win-x86"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "libraryId": "Microsoft.AspNetCore.App.Runtime.win-x86"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "libraryId": "Microsoft.NETCore.App.Crossgen2.win-x64"
+    }
+  ]
+}

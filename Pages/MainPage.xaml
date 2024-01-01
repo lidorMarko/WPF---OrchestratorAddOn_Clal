@@ -1,0 +1,105 @@
+﻿<Page x:Class="OrchestratorAddOn.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OrchestratorAddOn.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Style/MainPageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Border Name="mainContent" 
+            Grid.Row="0" 
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Background="#F9F6EE" 
+            CornerRadius="40"
+            Margin="30">
+            <UniformGrid x:Name="cards"
+                         Columns="3">
+                <Button x:Name="Robots_button"
+                        Style="{StaticResource MenuButtons}"
+                        MouseEnter="Robots_button_MouseEnter"
+                        MouseLeave="Robots_button_MouseLeave"
+                        Click="Robots_button_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/images/robot_icon.png"/>
+                    </Button.Background>
+                    <TextBlock 
+                        x:Name="Robots_button_text"
+                        Style="{StaticResource MenuButtonsText}"
+                        Text="Robots Monitoring" />
+                </Button>
+                <Button Name="Logs_buttom"
+                        Style="{StaticResource MenuButtons}"
+                        MouseEnter="Logs_buttom_MouseEnter"
+                        MouseLeave="Logs_buttom_MouseLeave"
+                        Click="Logs_buttom_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/images/logs_icon.png"/>
+                    </Button.Background>
+
+                    <TextBlock 
+                        x:Name="Logs_buttom_text"
+                        Style="{StaticResource MenuButtonsText}"
+                        Text="Transaction  Logs" />
+                </Button>
+                <Button x:Name="Operations_button"
+                        Style="{StaticResource MenuButtons}"
+                        MouseEnter="Operations_button_MouseEnter"
+                        MouseLeave="Operations_button_MouseLeave"
+                        Click="Operations_button_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/images/systemOperations_icon.png"/>
+                    </Button.Background>
+                    <TextBlock 
+                        x:Name="Operations_button_text"
+                        Style="{StaticResource MenuButtonsText}"
+                        Text="System Operations" />
+                </Button>
+                <Button x:Name="Overview_button"
+                        Style="{StaticResource MenuButtons}"
+                        MouseEnter="Overview_button_MouseEnter"
+                        MouseLeave="Overview_button_MouseLeave"
+                        Click="Overview_button_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="/images/overview_icon.png"/>
+                                </Button.Background>
+                        <TextBlock 
+                            x:Name="Overview_button_text"
+                            Style="{StaticResource MenuButtonsText}"
+                            Text="Overview" /> 
+                </Button>
+                <Button x:Name="Reports_button"
+                        Style="{StaticResource MenuButtons}"
+                        MouseEnter="Reports_button_MouseEnter"
+                        MouseLeave="Reports_button_MouseLeave"
+                        Click="Reports_button_Click">
+                                    <Button.Background>
+                        <ImageBrush ImageSource="/images/reports_icon.png"/>
+                                    </Button.Background>
+                                <TextBlock 
+                            x:Name="Reports_button_text"
+                            Style="{StaticResource MenuButtonsText}"
+                            Text="Reports" />  
+                </Button>
+
+            </UniformGrid>
+        </Border>
+    </Grid>
+</Page>
